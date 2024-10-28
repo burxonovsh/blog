@@ -8,7 +8,7 @@
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold mb-6 text-center">Register</h1>
         <form action="{{route('Register')}}" method="POST" enctype="multipart/form-data">
-            @csrf
+            @csrf 
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                 <input type="text" id="name" name="name" value="{{old('name')}}" required
@@ -16,7 +16,7 @@
             </div>
             <div>
                 @error('name')
-                    <p>$message</p>
+                    $message
                 @enderror
             </div>
             <div class="mb-4">
@@ -26,7 +26,7 @@
             </div>
             <div>
                 @error('username')
-                   <p>$message</p>
+                   $message
                 @enderror
             </div>
             <div class="mb-4">
@@ -36,7 +36,7 @@
             </div>
             <div>
                 @error('email')
-                    <p>$message</p>
+                    $message
                 @enderror
             </div>
             <div class="mb-4">
@@ -46,7 +46,7 @@
             </div>
             <div>
                 @error('password')
-                    <p>$message</p>
+                    $message
                 @enderror
             </div>
             <div class="mb-4">
@@ -56,7 +56,7 @@
             </div>
             <div>
                 @error('avatar')
-                    <p>$message</p>
+                    $message
                 @enderror
             </div>
             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</button>

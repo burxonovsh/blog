@@ -15,20 +15,8 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    // public function index(){
-    //     if (auth()->check()) {
-    //         $followingId = auth()->user()->following()->pluck('users.id');
-    //         $posts = Post::whereIn('user_id', $followingId)->latest()->get();
-    //     } else {
-    //         $posts = Post::latest()->get();
-    //     }
-    //     return view('welcome', compact('posts'));
-    // }
     public function registerForm(){
-        // if(Auth::check()){
-        //     abort(403);
-        // }
-        return view("auth.register");
+        return view("blog.auth.register");
     }
     public function Register(RegisterRequest $request){
         $avatarPath = null;
@@ -43,8 +31,8 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        Mail::to($user->email)->send(new SendSmsToMail($user));
-        return redirect()->route('loginForm');
+        // Mail::to($user->email)->send(new SendSmsToMail($user));
+        return redirect()->route('home');
 
     }
     public function loginForm(){
@@ -60,23 +48,23 @@ class AuthController extends Controller
         $user = User::where('email', $request->input('email'))->first();
 
         if(!Hash::check($request->password, $user->password)){
-            return redirect()->route('auth.login');
+            return redirect()->route('blog.auth.login');
         }
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->route('blog.index');
+            return redirect()->route('blog.post.index');
         }
         else{
-            abort(403);
+            return false;
         }
        
     }
     public function profile(){
         $posts = Auth::user()->posts()->orderBy("created_at","desc")->paginate(4);
-        return view("auth.profile", compact("posts"));
+        return view("blog.auth.profile", compact("posts"));
     }
     public function editProfile(){
-        return view("auth.edit");
+        return view("blog.auth.edit");
     }
     public function update(UpdateRequest $request){
         $user = User::find($id);
@@ -93,7 +81,7 @@ class AuthController extends Controller
             $user->avatar = $request->file('avatar')->store('avatars', 'public');
         }
         $user->save();
-        return redirect()->route('auth.profile');
+        return redirect()->route('blog.auth.profile');
 
     }
     public function logout(){
@@ -110,18 +98,4 @@ class AuthController extends Controller
         @unlink(storage_path('app/public/' . $avatar));
         return;
     }
-    
-
-    // public function emailVerify(Request $request){
-    //     $user = User::where('verification_token', $request->token)->first();
-    //     if(!$user || $user->verification_token !== $request->token){
-    //         abort(404);
-    //     }
-
-    //     $user->email_verified_at = now();
-    //     $user->save();
-    //     return redirect()->route('loginForm');
-    // }
-
-
 }
