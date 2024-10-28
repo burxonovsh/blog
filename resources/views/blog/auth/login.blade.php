@@ -10,7 +10,7 @@
         <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
             <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
             <form action="{{ route('Login') }}" method="POST">
-                @csrf
+                @csrf 
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" id="email" name="email" value="{{ old('email') }}" required

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Routuse;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', [AuthController::class,'index'])->name('home');
 Route::get('/register', [AuthController::class,'registerForm'])->name('registerForm');

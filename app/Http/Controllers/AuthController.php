@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
+    public function index(){
+        $posts = Post::all();
+        return view('blog.post.index', compact('posts'));
+    }
     public function registerForm(){
         return view("blog.auth.register");
     }
@@ -44,19 +48,14 @@ class AuthController extends Controller
     }
 
     public function Login(LoginRequest $request){
-        $credentials = $request->all();
-        $user = User::where('email', $request->input('email'))->first();
-
-        if(!Hash::check($request->password, $user->password)){
-            return redirect()->route('blog.auth.login');
+        $user = User::where("email", $request->email)->first();
+        if($user && Hash::check($request->password, $user->password)){
+            if($user->email_verified_at != null){
+                Auth::attempt(["email"=> $request->email,"password"=> $request->password]);
+                return redirect()->route("home");
+            }
         }
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            return redirect()->route('blog.post.index');
-        }
-        else{
-            return false;
-        }
+        return redirect()->route('home');
        
     }
     public function profile(){
