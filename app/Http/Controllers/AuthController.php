@@ -47,17 +47,18 @@ class AuthController extends Controller
         return redirect()->back();
     }
 
-    public function Login(LoginRequest $request){
-        $user = User::where("email", $request->email)->first();
-        if($user && Hash::check($request->password, $user->password)){
-            if($user->email_verified_at != null){
-                Auth::attempt(["email"=> $request->email,"password"=> $request->password]);
-                return redirect()->route("home");
-            }
-        }
-        return redirect()->route('home');
-       
+    public function login(LoginRequest $request)
+{
+    $user = User::where('email', $request->input('email'))->first();
+    if (!$user || !Hash::check($request->input('password'), $user->password)) {
+        return redirect()->route('loginForm');
     }
+    if (Auth::attempt($request->only('email', 'password'))) {
+        $request->session()->regenerate();
+        return redirect()->route('home');
+    }
+    return redirect()->route('loginForm');
+}
     public function profile(){
         $posts = Auth::user()->posts()->orderBy("created_at","desc")->paginate(4);
         return view("blog.auth.profile", compact("posts"));
