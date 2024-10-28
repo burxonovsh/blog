@@ -100,7 +100,7 @@
                             onclick="document.getElementById('profile-dropdown').classList.toggle('hidden')">
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full"
-                                src="{{ asset('/storage' . '/' . auth()->user()->image->image_path) }}"
+                                src="{{ asset('/storage' . '/' . auth()->user()->avatar->avatarPath) }}"
                                 alt="User image">
                         </button>
 

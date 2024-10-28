@@ -7,7 +7,7 @@
     <div class="max-w-4xl mx-auto">
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
             <div class="flex flex-col sm:flex-row items-center mb-4">
-                <img src="{{asset('/storage' . '/' . auth()->user()->image->image_path)}}" alt="User Avatar"
+                <img src="{{asset('/storage' . '/' . auth()->user()->avatar)}}" alt="User Avatar"
                     class="w-20 h-20 rounded-full mr-4 mb-4 sm:mb-0">
                 <div class="text-center sm:text-left">
                     <h1 class="text-2xl font-bold">{{auth()->user()->name}}</h1>

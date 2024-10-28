@@ -11,4 +11,13 @@ class Post extends Model
         'title',
         'description'
     ] ;
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

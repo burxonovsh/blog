@@ -81,7 +81,7 @@ class AuthController extends Controller
             $user->avatar = $request->file('avatar')->store('avatars', 'public');
         }
         $user->save();
-        return redirect()->route('blog.auth.profile');
+        return redirect()->route('my.profile');
 
     }
     public function logout(){

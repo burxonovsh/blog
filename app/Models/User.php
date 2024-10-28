@@ -47,4 +47,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
+    }
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    public function followers(){
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id');
+    }
+    public function following(){
+        return $this->belongsToMany(User::class,'follows','follower_id','followed_id');
+    }
+    public function isFollowing(User $user){
+        return $this->following()->where('followed_id' , $user->id)->exists();
+    }
 }
