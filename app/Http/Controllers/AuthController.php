@@ -26,6 +26,9 @@ class AuthController extends Controller
         $avatarPath = null;
         if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->image()->create([
+                'image_path'=>$avatarPath,
+            ]);
         }
         $user = new User();
         $user->name = $request->name;

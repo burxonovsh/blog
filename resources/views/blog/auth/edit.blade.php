@@ -45,14 +45,14 @@
                     <label for="avatar" class="block text-sm font-medium text-gray-700">Avatar</label>
                     <input type="file" id="avatar" name="avatar" accept="image/*"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                    <p class="mt-2 text-sm text-gray-500">Current Avatar: {{auth()->user()->image->image_path}}</p>
+                    <p class="mt-2 text-sm text-gray-500">Current Avatar: {{auth()->user()->image}}</p>
                 </div>
                 <div>
                     @error('avatar')
                         <p>$message</p>
                     @enderror
                 </div>
-                <img src="{{asset('/storage' . '/' . auth()->user()->image->image_path)}}" width="150px" alt="User's avatar">
+                <img src="{{asset('/storage' . '/' . auth()->user()->image)}}" width="150px" alt="User's avatar">
                 <hr class="my-6">
                 <div class="flex items-center space-x-4">
                     <div class="mb-4 w-1/2">
