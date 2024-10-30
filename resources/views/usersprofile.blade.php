@@ -1,4 +1,4 @@
-@extends('components.layouts.app')
+@extends('layouts.app')
 
 @section('title', 'User\'s Profile')
 
@@ -8,8 +8,8 @@
         <div class="max-w-4xl mx-auto">
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
                 <div class="flex flex-col sm:flex-row items-center mb-4">
-                    @if(!empty($user->image->image_path))
-                    <img src="{{asset('/storage' . '/' . $user->image->image_path)}}" alt="User Avatar"
+                    @if(!empty($user->image_path))
+                    <img src="{{asset('/storage' . '/' . $user->image_path)}}" alt="User Avatar"
                         class="w-20 h-20 rounded-full mr-4 mb-4 sm:mb-0">
                     @endif
                     <div class="text-center sm:text-left">
@@ -50,7 +50,7 @@
                 @foreach ($user->posts as $post)
 
                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <img src="{{asset('/storage' . '/' . $post->image->image_path)}}" alt="Post Image"
+                        <img src="{{asset('/storage' . '/' . $post->image_path)}}" alt="Post Image"
                         class="w-full h-48 object-cover rounded-lg mb-4">
                         <h3 class="text-xl font-bold mb-2">{{$post->title}}</h3>
                         <p class="text-gray-700 mb-4">{{$post->description}}</p>

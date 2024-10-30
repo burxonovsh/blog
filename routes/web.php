@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Routuse;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\CommentsController;
 
 Route::get('/', [AuthController::class,'index'])->name('home');
@@ -21,4 +22,5 @@ Route::resource('/posts', PostController::class);
 Route::post( '/comments/store', [CommentsController::class, 'store'])->name('comments.store');
 Route::delete('/comments/destroy/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 Route::get('/users/profile/{username}', [PostController::class, 'userProfile'])->name('users.profile');
-
+Route::get('/follow/{id}', [FollowController::class,'follow'])->name('follow');
+Route::get('/unfollow/{id}', [FollowController::class,'unfollow'])->name('unfollow');
