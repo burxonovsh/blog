@@ -8,6 +8,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
+use App\Notifications\CommentNotification;
 
 class CommentsController extends Controller
 {
@@ -21,7 +22,7 @@ class CommentsController extends Controller
             'comment' => $request->comment,
         ]);
         $user = User::findOrFail($post->user_id);
-        // $user->notify(new NewCommentNotification($post));
+        $user->notify(new CommentNotification($post));
         return redirect()->route('posts.show', $post->id);
     }
 

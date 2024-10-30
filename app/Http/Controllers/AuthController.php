@@ -17,7 +17,7 @@ class AuthController extends Controller
 {
     public function index(){
         $posts = Post::all();
-        return view('blog.post.index', compact('posts'));
+        return view('welcome', compact('posts'));
     }
     public function registerForm(){
         return view("blog.auth.register");
