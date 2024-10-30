@@ -124,6 +124,6 @@ class PostController extends Controller
         if(!$user){
             abort(404);
         }
-        return view("userprofile", compact("user"));
+        return view("usersprofile", compact("user"));
     }
 }
