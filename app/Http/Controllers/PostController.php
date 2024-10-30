@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\PostUpdateRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -74,7 +75,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, string $id)
+    public function update(PostUpdateRequest $request, string $id)
     {
         $post = Post::findOrFail($id);
         if($post->user_id !== Auth::id()){
@@ -93,7 +94,7 @@ class PostController extends Controller
                 'image_path' => $updatedImage
             ]);
         }
-        return redirect()->route('blog.post.show', $post->id);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**

@@ -25,10 +25,10 @@
                 </div>
                 <div class="mb-4">
                     <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-                    <input type="file" id="image" name="image"  value="{{$post->image->image_path}}" accept="image/*"
+                    <input type="file" id="image" name="image"  value="{{$post->image_path}}" accept="image/*"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    <p class="mt-2 text-sm text-gray-500">Current image: {{$post->image->image_path}}</p>
-                    <img src="{{asset('/storage' . '/' . $post->image->image_path)}}" width="150px" alt="Post's Image">
+                    <p class="mt-2 text-sm text-gray-500">Current image: {{$post->image_path}}</p>
+                    <img src="{{asset('/storage' . '/' . $post->image_path)}}" width="150px" alt="Post's Image">
                 </div>
                 <button type="submit"
                     class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update

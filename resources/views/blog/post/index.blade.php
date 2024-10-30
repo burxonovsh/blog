@@ -10,10 +10,10 @@
             @foreach ($posts as $post)
 
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <img src="{{asset('/storage' . '/' . $post->image->image_path)}}" alt="Post Image" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="{{asset('/storage' . '/' . $post->image_path)}}" alt="Post Image" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h2 class="text-xl font-bold mb-2">{{$post->title}}</h2>
                     <p class="text-gray-700 mb-4">{{$post->description}}</p>
-                        <p class="text-gray-700 mb-4">By <a href="{{route('users.profile', $post->user->username)}}"
+                        <p class="text-gray-700 mb-4">By <a href="{{route('users.profile', $post->user->name)}}"
                             class="text-indigo-600 hover:text-indigo-800">{{$post->user->name}}</a>
                         </p>
                         <a href="{{route('posts.show', $post->id)}}" class="text-indigo-600 hover:text-indigo-800">Read More</a>

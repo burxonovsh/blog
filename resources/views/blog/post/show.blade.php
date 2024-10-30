@@ -7,7 +7,7 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <article class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
             <h1 class="text-3xl font-bold mb-4">{{ $post->title }}</h1>
-            <img src="{{ asset('/storage' . '/' . $post->image->image_path) }}" alt="Post Image"
+            <img src="{{ asset('/storage' . '/' . $post->image_path) }}" alt="Post Image"
                 class="w-full h-64 object-cover rounded-lg mb-4">
             <p class="text-gray-700 mb-6">{{ $post->description }}</p>
 

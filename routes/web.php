@@ -19,3 +19,6 @@ Route::get('/posts', [PostController::class,'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
 Route::resource('/posts', PostController::class);
 Route::post( '/comments/store', [CommentsController::class, 'store'])->name('comments.store');
+Route::delete('/comments/destroy/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+Route::get('/users/profile/{username}', [PostController::class, 'userProfile'])->name('users.profile');
+
