@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/', [AuthController::class,'index'])->name('home');
 Route::get('/register', [AuthController::class,'registerForm'])->name('registerForm');

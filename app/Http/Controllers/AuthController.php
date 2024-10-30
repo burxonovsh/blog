@@ -23,7 +23,6 @@ class AuthController extends Controller
         return view("blog.auth.register");
     }
     public function Register(RegisterRequest $request){
-        
         $user = new User();
         $user->name = $request->name;
         $user->username = $request->username;
@@ -32,17 +31,15 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        $avatarPath = null;
-        if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars', 'public');
-            $user->image()->create([
-                'image_path'=>$avatarPath,
-            ]);
-        }
-        // Mail::to($user->email)->send(new SendSmsToMail($user));
-        return redirect()->route('home');
+        $uploadedAvatar = $this->uploadAvatar($request->file('avatar'));
+        $user->image()->create([
+            'image_path'=> $uploadedAvatar,
+        ]);
+        Mail::to($user->email)->send(new SendSmsToMail($user));
+        return redirect()->route('loginForm');
 
     }
+
     public function loginForm(){
         if(!Auth::check()){
 
