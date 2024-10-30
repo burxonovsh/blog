@@ -23,7 +23,7 @@
                     <a href="{{ route('posts.index') }}"
                         class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">All
                         Posts</a>
-                    @if (auth()->check() && auth()->user()->email_verified_at !== null)
+                    @if (auth()->check())
                         <a href="{{ route('posts.create') }}"
                             class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Create
                             Post</a>

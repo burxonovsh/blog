@@ -25,9 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(Auth::check() && Auth::user()->email_verified_at == null){
-            abort(403);
-        }
+        // if(Auth::check() ){
+        //     abort(403);
+        // }
         return view("blog.post.create");
 
     }

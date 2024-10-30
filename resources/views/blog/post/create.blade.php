@@ -10,7 +10,7 @@
             <p class="mb-6"><a href="/index.html" class="text-indigo-600 hover:text-indigo-800">Back</a>
             </p>
             <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
+                @csrf 
                 <div class="mb-4">
                     <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                     <input type="text" id="title" name="title" value="{{old('title')}}" required

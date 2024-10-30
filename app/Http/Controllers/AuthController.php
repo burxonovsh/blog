@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Mail\SendSmsToMail;
 use App\Models\Post;
 use App\Models\User;
@@ -69,7 +69,7 @@ class AuthController extends Controller
     public function editProfile(){
         return view("blog.auth.edit");
     }
-    public function update(UpdateRequest $request){
+    public function update(UpdateRequest $request, $id){
         $user = User::find($id);
         if (!empty($user->avatar)) {
             $oldAvatarPath = storage_path('app/public/' . $user->avatar);
@@ -81,7 +81,7 @@ class AuthController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         if ($request->hasFile('avatar')) {
-            $user->avatar = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $request->file('avatar')->store('uploads', 'public');
         }
         $user->save();
         return redirect()->route('my.profile');

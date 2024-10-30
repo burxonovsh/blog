@@ -35,7 +35,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @foreach ($posts as $post)
             <div class="bg-white p-6 rounded-lg shadow-md">
-                <img src="{{asset('/storage' . '/' . $post->image->image_path)}}" alt="Post Image"
+                <img src="{{asset('/storage' . '/' . $post->image_path)}}" alt="Post Image"
                 class="w-full h-48 object-cover rounded-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">{{$post->title}}</h3>
                 <p class="text-gray-700 mb-4">{{$post->description}}</p>
