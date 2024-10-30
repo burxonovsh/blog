@@ -24,3 +24,4 @@ Route::delete('/comments/destroy/{id}', [CommentsController::class, 'destroy'])-
 Route::get('/users/profile/{username}', [PostController::class, 'userProfile'])->name('users.profile');
 Route::get('/follow/{id}', [FollowController::class,'follow'])->name('follow');
 Route::get('/unfollow/{id}', [FollowController::class,'unfollow'])->name('unfollow');
+Route::patch('/read/notify{id}', [NotificationController::class,'readNotify'])->name('mark.notification.read');
