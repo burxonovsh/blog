@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Routuse;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentsController;
 
 Route::get('/', [AuthController::class,'index'])->name('home');
 Route::get('/register', [AuthController::class,'registerForm'])->name('registerForm');
@@ -17,3 +18,4 @@ Route::resource( '/posts', PostController::class);
 Route::get('/posts', [PostController::class,'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
 Route::resource('/posts', PostController::class);
+Route::post( '/comments/store', [CommentsController::class, 'store'])->name('comments.store');
