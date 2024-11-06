@@ -16,7 +16,7 @@
             </div>
             <div>
                 @error('name')
-                    $message
+                <p class="text-red-500">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-4">
@@ -26,7 +26,7 @@
             </div>
             <div>
                 @error('username')
-                   $message
+                <p class="text-red-500">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-4">
@@ -36,7 +36,7 @@
             </div>
             <div>
                 @error('email')
-                    $message
+                <p class="text-red-500">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-4">
@@ -46,7 +46,7 @@
             </div>
             <div>
                 @error('password')
-                    $message
+                <p class="text-red-500">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-4">
@@ -56,7 +56,7 @@
             </div>
             <div>
                 @error('avatar')
-                    $message
+                <p class="text-red-500">{{ $message }}</p>
                 @enderror
             </div>
             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</button>

@@ -28,7 +28,8 @@
                 </div>
                 <div>
                     @error('username')
-                        $message
+                    
+                    <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
@@ -38,7 +39,7 @@
                 </div>
                 <div>
                     @error('email')
-                       $message
+                    <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
@@ -48,7 +49,7 @@
                 </div>
                 <div>
                     @error('avatar')
-                        <p>$message</p>
+                    <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <p>Current avatar</p>
@@ -66,7 +67,7 @@
                         <input type="password" id="new_password" name="new_password"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                             @error('new_password')
-                                <p>$message</p>
+                            <p class="text-red-500">{{ $message }}</p>
                             @enderror
                     </div>
                 </div>

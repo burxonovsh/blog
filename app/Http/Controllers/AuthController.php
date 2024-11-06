@@ -111,12 +111,12 @@ class AuthController extends Controller
     }
     public function emailVerify(Request $request){
         $user = User::where('verification_token', $request->token)->first();
-        if(!$user || $user->verification_token !== $request->token){
-            abort(404);
-        }
+        // if(!$user || $user->verification_token !== $request->token){
+        //     abort(404);
+        // }
 
         $user->email_verified_at = now();
-        $user->save();
+        $user->update();
         return redirect()->route('loginForm');
     }
 

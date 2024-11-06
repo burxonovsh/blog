@@ -18,7 +18,7 @@
                 </div>
                 <div>
                     @error('title')
-                        <p style="color:red">{{'* ' . $message}}</p>
+                    <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     @error('description')
-                        <p style="color:red">{{'* ' . $message}}</p>
+                    <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
@@ -38,7 +38,7 @@
                 </div>
                 <div>
                     @error('image')
-                        <p style="color:red">{{'* ' . $message}}</p>
+                    <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <button type="submit"
