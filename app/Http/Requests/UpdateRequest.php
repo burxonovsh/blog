@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'regex:/^[\pL\s\-\']+$/u|min:5',
+            'name' => 'required|min:5',
             'username' => [
                 'nullable',
                 Rule::unique('users')->ignore(Auth::id()),

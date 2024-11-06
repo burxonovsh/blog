@@ -8,8 +8,8 @@
         <div class="max-w-4xl mx-auto">
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
                 <div class="flex flex-col sm:flex-row items-center mb-4">
-                    @if(!empty($user->image_path))
-                    <img src="{{asset('/storage' . '/' . $user->image_path)}}" alt="User Avatar"
+                    @if(!empty(auth()->user()->image->image_path))
+                    <img src="{{asset('/storage' . '/' . auth()->user()->image_path)}}" alt="User Avatar"
                         class="w-20 h-20 rounded-full mr-4 mb-4 sm:mb-0">
                     @endif
                     <div class="text-center sm:text-left">

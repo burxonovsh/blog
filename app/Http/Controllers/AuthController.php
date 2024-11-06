@@ -67,21 +67,31 @@ class AuthController extends Controller
     public function editProfile(){
         return view("blog.auth.edit");
     }
-    public function update(UpdateRequest $request, $id){
-        $user = User::find($id);
-        if (!empty($user->avatar)) {
-            $oldAvatarPath = storage_path('app/public/' . $user->avatar);
-            if (file_exists($oldAvatarPath)) {
-                    unlink($oldAvatarPath);
+    public function update(UpdateRequest $request){
+        if(Auth::check()){
+            $id = Auth::id();
+        }
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+
+        if(!empty($request->old_password)){
+            if(!Hash::check($request->old_password, $user->password)){
+                    return redirect()->back()->with("error", "This password is incorrect");
                 }
-            }
-        $user->name = $request->input('name');
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        if ($request->hasFile('avatar')) {
-            $user->avatar = $request->file('avatar')->store('uploads', 'public');
+            $user->password = bcrypt($request->new_password);
         }
         $user->save();
+        if($request->hasFile("avatar")){
+            if($user->image->image_path){
+                $this->deleteAvatar($user->image->image_path);
+            }
+            $uploadedAvatar = $this->uploadAvatar($request->file('avatar'));
+            $user->image()->update([
+                'image_path'=> $uploadedAvatar
+            ]);
+        }
         return redirect()->route('my.profile');
 
     }
@@ -99,4 +109,15 @@ class AuthController extends Controller
         @unlink(storage_path('app/public/' . $avatar));
         return;
     }
+    public function emailVerify(Request $request){
+        $user = User::where('verification_token', $request->token)->first();
+        if(!$user || $user->verification_token !== $request->token){
+            abort(404);
+        }
+
+        $user->email_verified_at = now();
+        $user->save();
+        return redirect()->route('loginForm');
+    }
+
 }
