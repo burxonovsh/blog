@@ -95,6 +95,10 @@ class AuthController extends Controller
         return redirect()->route('my.profile');
 
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('loginForm');
+    }
     
     public function uploadAvatar($avatar){
         $avatarPath = time() . "." . $avatar->getClientOriginalExtension();
