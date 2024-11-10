@@ -48,10 +48,10 @@ class AuthController extends Controller
         return redirect()->back();
     }
 
-    public function login(LoginRequest $request)
-{
+    public function login(LoginRequest $request){
+ 
     $user = User::where('email', $request->input('email'))->first();
-    if (!$user || !Hash::check($request->input('password'), $user->password)) {
+    if (!$user || !Hash::check($request->input('password'), $user->password )||$user->email_verified_at == null) {
         return redirect()->route('loginForm');
     }
     if (Auth::attempt($request->only('email', 'password'))) {
