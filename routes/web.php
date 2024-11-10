@@ -27,4 +27,4 @@ Route::get('/follow/{id}', [FollowController::class,'follow'])->name('follow')->
 Route::get('/unfollow/{id}', [FollowController::class,'unfollow'])->name('unfollow')->middleware('checkAuth');
 Route::patch('/read/notify{id}', [NotificationController::class,'readNotify'])->name('mark.notification.read');
 Route::get('/notify/{username}', [NotificationController::class,'unReadNotification'])->name('follow.notify')->middleware('checkAuth');
-Route::get('/email-verify', [AuthController::class,'emailVerify'])->name('email.verify');
+Route::get('email-verify', [AuthController::class, 'emailVerify'])->name('email.verify');
